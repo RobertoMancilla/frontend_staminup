@@ -1,0 +1,74 @@
+[
+  {
+    "id": "prv-001",
+    "name": "Carlos Méndez",
+    "experience": "10 años de experiencia",
+    "rating": 4.8,
+    "completedJobs": 245,
+    "serviceIds": ["srv-001"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=12",
+    "verified": true,
+    "bio": "Plomero certificado especializado en reparaciones de emergencia y detección de fugas. Trabajo garantizado y atención 24/7.",
+    "specialties": ["Fugas de agua", "Reparación de tuberías", "Instalación de llaves"]
+  },
+  {
+    "id": "prv-005",
+    "name": "Luis Hernández",
+    "experience": "8 años de experiencia",
+    "rating": 4.6,
+    "completedJobs": 178,
+    "serviceIds": ["srv-001"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=15",
+    "verified": true,
+    "bio": "Especialista en plomería residencial con certificación nacional. Servicio rápido y eficiente.",
+    "specialties": ["Destape de drenajes", "Fugas de agua", "Mantenimiento preventivo"]
+  },
+  {
+    "id": "prv-002",
+    "name": "Ana García",
+    "experience": "12 años de experiencia",
+    "rating": 4.9,
+    "completedJobs": 189,
+    "serviceIds": ["srv-002"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=5",
+    "verified": true,
+    "bio": "Electricista certificada con especialización en instalaciones residenciales y automatización del hogar.",
+    "specialties": ["Instalación eléctrica", "Automatización", "Paneles solares"]
+  },
+  {
+    "id": "prv-006",
+    "name": "Patricia Morales",
+    "experience": "7 años de experiencia",
+    "rating": 4.7,
+    "completedJobs": 134,
+    "serviceIds": ["srv-002"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=20",
+    "verified": true,
+    "bio": "Electricista con especialización en eficiencia energética y paneles solares.",
+    "specialties": ["Ahorro energético", "Instalaciones", "Reparaciones"]
+  },
+  {
+    "id": "prv-003",
+    "name": "Roberto Sánchez",
+    "experience": "15 años de experiencia",
+    "rating": 4.7,
+    "completedJobs": 312,
+    "serviceIds": ["srv-003"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=8",
+    "verified": true,
+    "bio": "Pintor profesional con amplia experiencia en acabados de alta calidad y técnicas decorativas.",
+    "specialties": ["Pintura de interiores", "Texturizados", "Acabados decorativos"]
+  },
+  {
+    "id": "prv-004",
+    "name": "María López",
+    "experience": "9 años de experiencia",
+    "rating": 5.0,
+    "completedJobs": 421,
+    "serviceIds": ["srv-004"],
+    "avatarUrl": "https://i.pravatar.cc/150?img=9",
+    "verified": true,
+    "bio": "Servicio de limpieza profesional eco-friendly. Usamos productos biodegradables y técnicas especializadas.",
+    "specialties": ["Limpieza profunda", "Productos ecológicos", "Desinfección"]
+  }
+]
