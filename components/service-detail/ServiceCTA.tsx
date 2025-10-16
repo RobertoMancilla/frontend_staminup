@@ -8,6 +8,7 @@ interface ServiceCTAProps {
 /**
  * CTA final para convertir al usuario
  * Invita a contactar con especialistas
+ * NO SE USA ACTUALMENTE.
  */
 export function ServiceCTA({ onContactClick }: ServiceCTAProps) {
   return (

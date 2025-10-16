@@ -72,3 +72,51 @@ export interface SearchFilters {
   minRating?: number;
   location?: string;
 }
+
+// Client Profile Types
+export interface ClientUser {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  memberSince: string;
+  profileImage: string;
+}
+
+// Order Rating - Calificación embebida en la orden
+export interface OrderRating {
+  value: number;
+  createdAt: string;
+}
+
+// Order Report - Reporte embebido en la orden (información resumida)
+export interface OrderReport {
+  id: string;
+  category: 'not_completed' | 'poor_quality' | 'behavior' | 'price_issue' | 'no_show' | 'fraud' | 'other';
+  status: 'pending' | 'in_review' | 'resolved' | 'dismissed';
+  createdAt: string;
+}
+
+export interface Order {
+  id: string;
+  serviceName: string;
+  providerName: string;
+  date: string;
+  status: 'Completado' | 'En curso' | 'Pendiente' | 'Cancelado';
+  price: number;
+  rating?: OrderRating;
+  reports?: OrderReport[];
+}
+
+// Client Review - Reseña completa del cliente (para la sección "Mis Reseñas")
+export interface ClientReview {
+  id: string;
+  orderId: string;
+  serviceName: string;
+  providerName: string;
+  rating: number;
+  comment: string;
+  date: string;
+  tags?: string[];
+}

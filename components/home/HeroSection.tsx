@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import Section from "@/components/Section";
+import Section from "@/components/layout/Section";
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,9 +29,7 @@ export default function HeroSection() {
         {/* Title */}
         <h1 className="heading-xl mb-6 leading-tight">
           Encuentra el profesional ideal para tu hogar{" "}
-          <span style={{ color: "var(--color-primary-low)" }}>
-            en minutos
-          </span>
+          <span style={{ color: "var(--color-primary-low)" }}>en minutos</span>
         </h1>
 
         {/* Subtitle */}

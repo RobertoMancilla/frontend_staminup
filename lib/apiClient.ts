@@ -11,7 +11,7 @@ const USE_MOCK_DATA = true;
  */
 
 // Helper para simular delay de red
-const simulateNetworkDelay = (ms: number = 500) => 
+const simulateNetworkDelay = (ms: number = 300) => 
   new Promise(resolve => setTimeout(resolve, ms));
 
 export const apiClient = {

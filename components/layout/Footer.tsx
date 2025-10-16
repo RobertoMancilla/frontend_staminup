@@ -6,8 +6,7 @@ export default function Footer() {
     company: [
       { label: "Inicio", href: "/" },
       { label: "Servicios", href: "/services" },
-      { label: "Nosotros", href: "/about" },
-      { label: "Contacto", href: "/contact" },
+      { label: "Perfil", href: "/profile" },
     ],
     legal: [
       { label: "Términos de uso", href: "/terms" },

@@ -1,0 +1,9 @@
+{
+  "id": "u01",
+  "name": "Mariana López",
+  "email": "mariana.lopez@example.com",
+  "phone": "+52 55 9876 5432",
+  "address": "Av. Reforma 123, CDMX",
+  "memberSince": "2024-02-15",
+  "profileImage": "/mock-images/mariana.jpg"
+}

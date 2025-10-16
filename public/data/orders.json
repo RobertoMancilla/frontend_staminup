@@ -1,0 +1,55 @@
+[
+  {
+    "id": "o001",
+    "serviceName": "Limpieza de hogar",
+    "providerName": "Clean Home Services",
+    "date": "2025-08-03",
+    "status": "Completado",
+    "price": 800,
+    "rating": {
+      "value": 5,
+      "createdAt": "2025-08-04T10:30:00Z"
+    },
+    "reports": []
+  },
+  {
+    "id": "o002",
+    "serviceName": "Mantenimiento eléctrico",
+    "providerName": "ElectriPro",
+    "date": "2025-09-15",
+    "status": "En curso",
+    "price": 1200,
+    "reports": []
+  },
+  {
+    "id": "o003",
+    "serviceName": "Reparación de plomería",
+    "providerName": "AquaFix",
+    "date": "2025-07-20",
+    "status": "Completado",
+    "price": 650,
+    "rating": {
+      "value": 4,
+      "createdAt": "2025-07-21T15:45:00Z"
+    },
+    "reports": []
+  },
+  {
+    "id": "o004",
+    "serviceName": "Jardinería y paisajismo",
+    "providerName": "Green Garden",
+    "date": "2025-10-01",
+    "status": "Pendiente",
+    "price": 900,
+    "reports": []
+  },
+  {
+    "id": "o005",
+    "serviceName": "Pintura interior",
+    "providerName": "Color Perfect",
+    "date": "2025-09-05",
+    "status": "Completado",
+    "price": 2500,
+    "reports": []
+  }
+]

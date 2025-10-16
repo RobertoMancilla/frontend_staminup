@@ -7,7 +7,7 @@ import { ProvidersList } from "@/components/service-detail/ProvidersList";
 import { ReviewsSection } from "@/components/service-detail/ReviewsSection";
 import { ServiceCTA } from "@/components/service-detail/ServiceCTA";
 import { ServiceDetailSkeleton } from "@/components/service-detail/ServiceDetailSkeleton";
-import Section from "@/components/Section";
+import Section from "@/components/layout/Section";
 import { useServiceDetail } from "@/hooks/useServiceDetail";
 import { useProviders } from "@/hooks/useProviders";
 import { useReviews } from "@/hooks/useReviews";

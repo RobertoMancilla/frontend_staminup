@@ -1,5 +1,5 @@
 import { FileText, MessageCircle, CheckCircle } from "lucide-react";
-import Section, { SectionHeader } from "@/components/Section";
+import Section, { SectionHeader } from "@/components/layout/Section";
 
 export default function HowItWorksSection() {
   const steps = [

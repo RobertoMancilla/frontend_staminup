@@ -2,7 +2,7 @@
 
 import { useCategories } from "@/hooks/useCategories";
 import CategoryCard from "@/components/CategoryCard";
-import Section, { SectionHeader } from "@/components/Section";
+import Section, { SectionHeader } from "@/components/layout/Section";
 
 export default function CategoriesSection() {
   const { categories, loading, error } = useCategories();

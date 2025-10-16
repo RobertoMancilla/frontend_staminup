@@ -4,7 +4,7 @@ import { useFeaturedServices } from "@/hooks/useServices";
 import ServiceCard from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Section, { SectionHeader } from "@/components/Section";
+import Section, { SectionHeader } from "@/components/layout/Section";
 
 export default function FeaturedServicesSection() {
   // info from data layer

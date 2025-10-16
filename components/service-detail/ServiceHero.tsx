@@ -78,7 +78,7 @@ export function ServiceHero({ service, onStartRequest }: ServiceHeroProps) {
 
             {/* Precio */}
             <div className="bg-white/10 backdrop-blur-sm p-5 rounded-xl border border-white/20">
-              <p className="body-sm text-white/70 mb-1">Desde</p>
+              {/* <p className="body-sm text-white/70 mb-1">Desde</p> */}
               <p className="heading-md text-white">
                 {formatPrice(service.price, service.priceType)}
               </p>
