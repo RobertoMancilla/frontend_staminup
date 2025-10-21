@@ -11,7 +11,6 @@ interface RequestsListProps {
   onAccept: (requestId: string) => void;
   onReject: (requestId: string) => void;
   onEdit: (requestId: string) => void;
-  onDelete: (requestId: string) => void;
   onOpenChat: (requestId: string) => void;
   onReport: (requestId: string) => void;
   onViewDetail: (requestId: string) => void;
@@ -23,7 +22,6 @@ export default function RequestsList({
   onAccept,
   onReject,
   onEdit,
-  onDelete,
   onOpenChat,
   onReport,
   onViewDetail,
@@ -112,7 +110,6 @@ export default function RequestsList({
               onAccept={onAccept}
               onReject={onReject}
               onEdit={onEdit}
-              onDelete={onDelete}
               onOpenChat={onOpenChat}
               onReport={onReport}
               onViewDetail={onViewDetail}

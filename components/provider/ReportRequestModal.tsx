@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AlertTriangle, Flag } from "lucide-react";
+import { FileText, Send } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -21,9 +21,19 @@ interface ReportRequestModalProps {
 
 const REPORT_CATEGORIES = [
   {
-    id: "fake_request",
-    label: "Solicitud falsa",
-    description: "La solicitud parece ser fraudulenta o no legítima",
+    id: "excellent",
+    label: "Excelente",
+    description: "Cliente muy profesional y colaborador",
+  },
+  {
+    id: "good",
+    label: "Bueno",
+    description: "El servicio se completó sin problemas significativos",
+  },
+  {
+    id: "payment_issue",
+    label: "Problema de pago",
+    description: "Hubo inconvenientes con el pago acordado",
   },
   {
     id: "inappropriate_behavior",
@@ -31,24 +41,24 @@ const REPORT_CATEGORIES = [
     description: "El cliente tuvo un comportamiento no profesional",
   },
   {
-    id: "payment_issue",
-    label: "Problema de pago",
-    description: "Problemas con el pago o método de pago",
-  },
-  {
     id: "dangerous_conditions",
     label: "Condiciones peligrosas",
-    description: "El lugar de trabajo presenta condiciones inseguras",
+    description: "El lugar de trabajo presentó condiciones inseguras",
   },
   {
-    id: "spam",
-    label: "Spam o solicitud duplicada",
-    description: "Solicitud repetida o spam",
+    id: "incomplete_info",
+    label: "Información incompleta",
+    description: "El cliente no proporcionó toda la información necesaria",
+  },
+  {
+    id: "service_cancelled",
+    label: "Servicio cancelado",
+    description: "El cliente canceló el servicio sin previo aviso",
   },
   {
     id: "other",
     label: "Otro",
-    description: "Otro tipo de problema no listado",
+    description: "Otro tipo de situación no listada",
   },
 ];
 
@@ -78,9 +88,9 @@ export default function ReportRequestModal({
       return;
     }
 
-    if (description.trim().length < 20) {
+    if (description.trim().length < 10) {
       alert(
-        "Por favor proporciona una descripción más detallada (mínimo 20 caracteres)"
+        "Por favor proporciona una descripción más detallada (mínimo 10 caracteres)"
       );
       return;
     }
@@ -93,9 +103,10 @@ export default function ReportRequestModal({
     // Generar ID único para el reporte
     const reportId = `rep_${Date.now()}`;
 
-    console.log("Reporte de request enviado:", {
+    console.log("Reporte del servicio completado enviado:", {
       id: reportId,
       requestId: request.requestId,
+      clientName: request.userName,
       category,
       description,
       timestamp: new Date().toISOString(),
@@ -105,7 +116,7 @@ export default function ReportRequestModal({
 
     // Mostrar mensaje de éxito
     alert(
-      "Tu reporte ha sido enviado exitosamente. Nuestro equipo lo revisará y se pondrá en contacto contigo pronto."
+      "Tu reporte ha sido enviado exitosamente. Gracias por documentar tu experiencia."
     );
 
     if (onSuccess) {
@@ -120,12 +131,12 @@ export default function ReportRequestModal({
       <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
         <DialogHeader className="px-6 pt-6 pb-2">
           <DialogTitle className="heading-lg text-primary pr-8 flex items-center gap-2">
-            <AlertTriangle className="h-6 w-6 text-[var(--color-error)]" />
-            Reportar Solicitud
+            {/* <FileText className="h-6 w-6 text-[var(--color-primary)]" /> */}
+            Reportar Servicio
           </DialogTitle>
           <DialogDescription className="body-base text-secondary">
-            Reporta problemas con esta solicitud. Tu reporte será revisado por
-            nuestro equipo de soporte.
+            Documenta tu experiencia con este cliente después de completar el
+            servicio. Esto ayuda a mantener la calidad de la plataforma.
           </DialogDescription>
         </DialogHeader>
 
@@ -133,15 +144,15 @@ export default function ReportRequestModal({
           {/* Contenido scrolleable */}
           <div className="overflow-y-auto px-6 space-y-6 pt-4">
             {/* Información de la Solicitud */}
-            <div className="rounded-lg bg-[var(--color-background-secondary)] p-4">
+            <div className="rounded-lg bg-[var(--color-background-secondary)] p-4 border-l-4 border-[var(--color-primary)]">
               <h3 className="body-base font-semibold text-primary mb-2">
                 {request.serviceName}
               </h3>
               <p className="body-sm text-secondary">
-                Cliente: {request.userName}
+                Cliente: <span className="font-medium">{request.userName}</span>
               </p>
               <p className="body-sm text-secondary">
-                Fecha solicitada:{" "}
+                Fecha del servicio:{" "}
                 {new Date(request.preferredDate).toLocaleDateString("es-MX", {
                   day: "numeric",
                   month: "long",
@@ -151,14 +162,17 @@ export default function ReportRequestModal({
                 })}
               </p>
               <p className="body-sm text-secondary">
-                Estado: <span className="font-medium">{request.status}</span>
+                Precio:{" "}
+                <span className="font-medium">
+                  ${request.amount.toFixed(2)} MXN
+                </span>
               </p>
             </div>
 
-            {/* Categoría del Problema */}
+            {/* Categoría del Reporte */}
             <div className="space-y-3">
               <label className="body-base font-medium text-primary">
-                Tipo de problema{" "}
+                ¿Cómo fue tu experiencia con este cliente?{" "}
                 <span className="text-[var(--color-error)]">*</span>
               </label>
               <div className="space-y-2">
@@ -198,21 +212,21 @@ export default function ReportRequestModal({
                 htmlFor="description"
                 className="body-base font-medium text-primary"
               >
-                Descripción detallada{" "}
+                Detalles del servicio{" "}
                 <span className="text-[var(--color-error)]">*</span>
               </label>
               <textarea
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Por favor describe el problema con el mayor detalle posible..."
+                placeholder="Describe cómo fue la experiencia, si hubo algún problema o destacar algo positivo sobre el cliente..."
                 maxLength={1000}
                 rows={6}
                 className="w-full rounded-lg border border-gray-300 p-3 body-base text-primary placeholder:text-gray-400 focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
                 required
               />
               <div className="flex justify-between items-center">
-                <p className="body-sm text-secondary">Mínimo 20 caracteres</p>
+                <p className="body-sm text-secondary">Mínimo 10 caracteres</p>
                 <p className="body-sm text-secondary">
                   {description.length}/1000 caracteres
                 </p>
@@ -235,9 +249,9 @@ export default function ReportRequestModal({
               <Button
                 type="submit"
                 disabled={
-                  !category || description.trim().length < 20 || isSubmitting
+                  !category || description.trim().length < 10 || isSubmitting
                 }
-                className="w-full sm:w-auto gap-2 bg-[var(--color-error)] hover:bg-[var(--color-error)]/90"
+                className="w-full sm:w-auto gap-2"
               >
                 {isSubmitting ? (
                   <>
@@ -246,7 +260,7 @@ export default function ReportRequestModal({
                   </>
                 ) : (
                   <>
-                    <Flag className="h-4 w-4" />
+                    <Send className="h-4 w-4" />
                     Enviar Reporte
                   </>
                 )}

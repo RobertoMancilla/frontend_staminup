@@ -103,19 +103,6 @@ export default function LoginModal({
             />
           </div>
 
-          <div className="flex items-center justify-between body-sm">
-            <label className="flex items-center space-x-2">
-              <input type="checkbox" className="rounded" />
-              <span className="text-secondary">Recordarme</span>
-            </label>
-            <a
-              href="#"
-              className="text-primary hover:text-[var(--color-primary-dark)]"
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
-
           <Button
             type="submit"
             disabled={loading}

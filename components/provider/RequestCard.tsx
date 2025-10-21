@@ -9,7 +9,6 @@ import {
   MessageCircle,
   Flag,
   Edit,
-  Trash2,
   Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,7 +26,6 @@ interface RequestCardProps {
   onAccept: (requestId: string) => void;
   onReject: (requestId: string) => void;
   onEdit: (requestId: string) => void;
-  onDelete: (requestId: string) => void;
   onOpenChat: (requestId: string) => void;
   onReport: (requestId: string) => void;
   onViewDetail: (requestId: string) => void;
@@ -47,7 +45,6 @@ export default function RequestCard({
   onAccept,
   onReject,
   onEdit,
-  onDelete,
   onOpenChat,
   onReport,
   onViewDetail,
@@ -170,7 +167,7 @@ export default function RequestCard({
           </div>
         )}
 
-        {/* Segunda fila: Ver detalles, Chat, Editar, Reportar, Eliminar */}
+        {/* Segunda fila: Ver detalles, Chat (solo pendiente), Editar (solo pendiente), Reportar (solo completado) */}
         <div className="flex flex-wrap gap-2 w-full">
           <Button
             size="sm"
@@ -180,42 +177,39 @@ export default function RequestCard({
           >
             Ver detalles
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => onOpenChat(request.requestId)}
-            className="gap-2"
-          >
-            <MessageCircle className="h-4 w-4" />
-            Chat
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => onEdit(request.requestId)}
-            className="gap-2"
-          >
-            <Edit className="h-4 w-4" />
-            Editar
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => onReport(request.requestId)}
-            className="gap-2"
-          >
-            <Flag className="h-4 w-4" />
-            Reportar
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => onDelete(request.requestId)}
-            className="gap-2 text-red-600 hover:bg-red-50"
-          >
-            <Trash2 className="h-4 w-4" />
-            Eliminar
-          </Button>
+          {request.status === "pending" && (
+            <>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => onOpenChat(request.requestId)}
+                className="gap-2"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Chat
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => onEdit(request.requestId)}
+                className="gap-2"
+              >
+                <Edit className="h-4 w-4" />
+                Editar
+              </Button>
+            </>
+          )}
+          {request.status === "completed" && (
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => onReport(request.requestId)}
+              className="gap-2"
+            >
+              <Flag className="h-4 w-4" />
+              Reportar
+            </Button>
+          )}
         </div>
       </CardFooter>
     </Card>

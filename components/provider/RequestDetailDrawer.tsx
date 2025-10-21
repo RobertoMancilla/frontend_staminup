@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  X,
-  User,
-  Clock,
-  MapPin,
-  Phone,
-  DollarSign,
-  MessageCircle,
-} from "lucide-react";
+import { X, User, Clock, MapPin, Phone, DollarSign } from "lucide-react";
 import Image from "next/image";
 import {
   Dialog,
@@ -24,7 +16,6 @@ interface RequestDetailDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   request: ProviderRequest | null;
-  onOpenChat: (requestId: string) => void;
 }
 
 const STATUS_CONFIG = {
@@ -50,7 +41,6 @@ export default function RequestDetailDrawer({
   open,
   onOpenChange,
   request,
-  onOpenChat,
 }: RequestDetailDrawerProps) {
   if (!request) return null;
 
@@ -70,14 +60,14 @@ export default function RequestDetailDrawer({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0">
+        <DialogHeader className="px-6 pt-6 pb-4 border-b">
           <DialogTitle className="heading-lg text-primary pr-8">
             Detalle de Solicitud
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 pt-4">
+        <div className="space-y-6 px-6 py-4 overflow-y-auto flex-1">
           {/* Header con Cliente */}
           <div className="flex items-start gap-4 pb-4 border-b">
             <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-[var(--color-primary)]">
@@ -180,65 +170,17 @@ export default function RequestDetailDrawer({
               </div>
             )}
           </div>
+        </div>
 
-          {/* Timeline / Historial */}
-          <div className="space-y-4 pt-4 border-t">
-            <h4 className="body-lg font-semibold text-primary">
-              Historial de la Solicitud
-            </h4>
-
-            <div className="space-y-3">
-              {request.history.map((entry, idx) => (
-                <div
-                  key={idx}
-                  className="flex gap-3 relative pl-6 before:content-[''] before:absolute before:left-2 before:top-6 before:bottom-0 before:w-[2px] before:bg-gray-200 last:before:hidden"
-                >
-                  <div className="absolute left-0 top-1.5 h-4 w-4 rounded-full bg-[var(--color-primary)] border-2 border-white" />
-                  <div className="flex-1 pb-4">
-                    <p className="body-sm font-medium text-primary">
-                      {ACTION_LABELS[entry.action] || entry.action}
-                    </p>
-                    <p className="body-sm text-secondary">
-                      {formatDate(entry.timestamp)}
-                    </p>
-                    {entry.note && (
-                      <p className="body-sm text-secondary mt-1 italic">
-                        {entry.note}
-                      </p>
-                    )}
-                    {entry.reason && (
-                      <p className="body-sm text-red-700 mt-1">
-                        Motivo: {entry.reason}
-                      </p>
-                    )}
-                    {entry.proposedDate && (
-                      <p className="body-sm text-blue-700 mt-1">
-                        Nueva fecha: {formatDate(entry.proposedDate)}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Acciones */}
-          <div className="flex gap-3 pt-4 border-t">
-            <Button
-              onClick={() => onOpenChat(request.requestId)}
-              className="flex-1 gap-2"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Abrir Chat
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => onOpenChange(false)}
-              className="flex-1"
-            >
-              Cerrar
-            </Button>
-          </div>
+        {/* Acciones - Footer fijo */}
+        <div className="flex gap-3 px-6 py-4 border-t bg-white">
+          <Button
+            variant="outline"
+            onClick={() => onOpenChange(false)}
+            className="w-full"
+          >
+            Cerrar
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

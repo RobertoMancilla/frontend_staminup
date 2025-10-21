@@ -20,5 +20,14 @@
     "status": "En curso",
     "price": 1200,
     "reports": []
+  },
+  {
+    "id": "o004",
+    "serviceName": "Instalación de aire acondicionado",
+    "providerName": "ClimaFresh",
+    "date": "2025-10-10",
+    "status": "Completado",
+    "price": 3500,
+    "reports": []
   }
 ]

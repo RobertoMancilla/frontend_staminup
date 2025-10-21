@@ -166,51 +166,6 @@ export default function RateServiceModal({
             )}
           </div>
 
-          {/* Tags Predefinidos */}
-          <div className="space-y-3">
-            <label className="body-base font-medium text-primary">
-              ¿Qué destacarías del servicio? (Opcional)
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {RATING_TAGS.map((tag) => (
-                <button
-                  key={tag.id}
-                  type="button"
-                  onClick={() => handleToggleTag(tag.id)}
-                  className={`rounded-full px-4 py-2 body-sm font-medium transition-all ${
-                    selectedTags.includes(tag.id)
-                      ? "bg-[var(--color-primary)] text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {tag.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Comentario */}
-          <div className="space-y-3">
-            <label
-              htmlFor="comment"
-              className="body-base font-medium text-primary"
-            >
-              Cuéntanos más sobre tu experiencia (Opcional)
-            </label>
-            <textarea
-              id="comment"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              placeholder="Describe tu experiencia con este servicio..."
-              maxLength={500}
-              rows={4}
-              className="w-full rounded-lg border border-gray-300 p-3 body-base text-primary placeholder:text-gray-400 focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20"
-            />
-            <p className="body-sm text-secondary text-right">
-              {comment.length}/500 caracteres
-            </p>
-          </div>
-
           {/* Botones */}
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end pt-4 border-t">
             <Button

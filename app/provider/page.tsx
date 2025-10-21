@@ -10,16 +10,6 @@ import EditRequestModal from "@/components/provider/EditRequestModal";
 import RequestDetailDrawer from "@/components/provider/RequestDetailDrawer";
 import ReportRequestModal from "@/components/provider/ReportRequestModal";
 import ChatPlaceholderDialog from "@/components/provider/ChatPlaceholderDialog";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { useProviderUser } from "@/hooks/useProviderUser";
 import { useProviderRequests } from "@/hooks/useProviderRequests";
 import { useCalendar } from "@/hooks/useCalendar";
@@ -37,7 +27,6 @@ export default function ProviderPage() {
     acceptRequest,
     rejectRequest,
     updateRequest,
-    deleteRequest,
   } = useProviderRequests();
   const { calendar, loading: calendarLoading } = useCalendar();
 
@@ -62,12 +51,6 @@ export default function ProviderPage() {
     open: boolean;
     request: ProviderRequest | null;
   }>({ open: false, request: null });
-
-  const [deleteConfirm, setDeleteConfirm] = useState<{
-    open: boolean;
-    requestId: string;
-    serviceName: string;
-  }>({ open: false, requestId: "", serviceName: "" });
 
   const [chatDialog, setChatDialog] = useState(false);
 
@@ -114,26 +97,6 @@ export default function ProviderPage() {
     // Mostrar alerta de éxito
     setTimeout(() => {
       alert("Solicitud actualizada exitosamente");
-    }, 250);
-  };
-
-  const handleDelete = (requestId: string) => {
-    const request = requests.find((r) => r.requestId === requestId);
-    if (request) {
-      setDeleteConfirm({
-        open: true,
-        requestId,
-        serviceName: request.serviceName,
-      });
-    }
-  };
-
-  const handleDeleteConfirm = async (requestId: string) => {
-    await deleteRequest(requestId);
-    setDeleteConfirm({ open: false, requestId: "", serviceName: "" });
-    // Mostrar alerta de éxito
-    setTimeout(() => {
-      alert("Solicitud eliminada");
     }, 250);
   };
 
@@ -221,7 +184,6 @@ export default function ProviderPage() {
               onAccept={handleAccept}
               onReject={handleReject}
               onEdit={handleEdit}
-              onDelete={handleDelete}
               onOpenChat={handleOpenChat}
               onReport={handleReport}
               onViewDetail={handleViewDetail}
@@ -261,7 +223,6 @@ export default function ProviderPage() {
         open={detailDrawer.open}
         onOpenChange={(open) => setDetailDrawer({ ...detailDrawer, open })}
         request={detailDrawer.request}
-        onOpenChat={handleOpenChat}
       />
 
       {reportModal.request && (
@@ -271,31 +232,6 @@ export default function ProviderPage() {
           request={reportModal.request}
         />
       )}
-
-      <AlertDialog
-        open={deleteConfirm.open}
-        onOpenChange={(open) => setDeleteConfirm({ ...deleteConfirm, open })}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>¿Eliminar solicitud?</AlertDialogTitle>
-            <AlertDialogDescription>
-              ¿Estás seguro de que deseas eliminar la solicitud &quot;
-              {deleteConfirm.serviceName}&quot;? Esta acción no se puede
-              deshacer.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={() => handleDeleteConfirm(deleteConfirm.requestId)}
-              className="bg-red-600 hover:bg-red-700"
-            >
-              Eliminar
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
 
       <ChatPlaceholderDialog open={chatDialog} onOpenChange={setChatDialog} />
     </div>
