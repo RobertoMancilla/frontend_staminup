@@ -120,3 +120,107 @@ export interface ClientReview {
   date: string;
   tags?: string[];
 }
+
+// Service Request / Booking Types
+export type BookingStatus = 
+  | 'pending' 
+  | 'accepted' 
+  | 'rejected' 
+  | 'in_progress' 
+  | 'completed' 
+  | 'cancelled';
+
+export interface ServiceRequest {
+  requestId?: string;
+  serviceId: string;
+  userId: string;
+  preferredDate: string; // ISO-8601
+  address: string;
+  contactPhone: string;
+  description: string;
+  amount?: number;
+  status?: BookingStatus;
+  createdAt?: string;
+}
+
+export interface ServiceRequestResponse {
+  requestId: string;
+  status: BookingStatus;
+  createdAt: string;
+  serviceRequest: ServiceRequest;
+}
+
+// Provider Types
+export interface ProviderUser {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  profileImage: string;
+  bio: string;
+  rating: number;
+  completedJobs: number;
+  verified: boolean;
+  joinedDate: string;
+  memberSince: string;
+}
+
+export interface ProviderRequest {
+  requestId: string;
+  serviceId: string;
+  serviceName: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  preferredDate: string;
+  address: string;
+  contactPhone: string;
+  description: string;
+  amount: number;
+  status: 'pending' | 'accepted' | 'rejected' | 'in_progress' | 'completed' | 'cancelled';
+  createdAt: string;
+  rejectionReason?: string;
+  history: RequestHistoryEntry[];
+}
+
+export interface RequestHistoryEntry {
+  action: 'created' | 'accepted' | 'rejected' | 'in_progress' | 'completed' | 'cancelled' | 'date_proposed';
+  timestamp: string;
+  note?: string;
+  reason?: string;
+  proposedDate?: string;
+}
+
+export interface TimeSlot {
+  start: string;
+  end: string;
+}
+
+export interface DayAvailability {
+  enabled: boolean;
+  slots: TimeSlot[];
+}
+
+export interface WeekAvailability {
+  monday: DayAvailability;
+  tuesday: DayAvailability;
+  wednesday: DayAvailability;
+  thursday: DayAvailability;
+  friday: DayAvailability;
+  saturday: DayAvailability;
+  sunday: DayAvailability;
+}
+
+export interface BlockedSlot {
+  id: string;
+  date: string;
+  start: string;
+  end: string;
+  reason: string;
+}
+
+export interface CalendarData {
+  availability: WeekAvailability;
+  blockedSlots: BlockedSlot[];
+}

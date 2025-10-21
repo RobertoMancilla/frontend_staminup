@@ -1,15 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { ServiceHero } from "@/components/service-detail/ServiceHero";
 import { ServiceDetails } from "@/components/service-detail/ServiceDetails";
-import { ProvidersList } from "@/components/service-detail/ProvidersList";
 import { ReviewsSection } from "@/components/service-detail/ReviewsSection";
 import { ServiceCTA } from "@/components/service-detail/ServiceCTA";
 import { ServiceDetailSkeleton } from "@/components/service-detail/ServiceDetailSkeleton";
+import { ServiceRequestModal } from "@/components/modals/ServiceRequestModal";
 import Section from "@/components/layout/Section";
 import { useServiceDetail } from "@/hooks/useServiceDetail";
-import { useProviders } from "@/hooks/useProviders";
 import { useReviews } from "@/hooks/useReviews";
 import { AlertCircle } from "lucide-react";
 
@@ -20,7 +20,6 @@ import { AlertCircle } from "lucide-react";
  * Muestra toda la información completa de un servicio:
  * - Hero con imagen y datos principales
  * - Detalles y características
- * - Proveedores disponibles
  * - Reseñas y calificaciones
  * - CTA final
  */
@@ -28,26 +27,20 @@ export default function ServiceDetailPage() {
   const params = useParams();
   const serviceId = params.id as string;
 
+  // Estado para el modal de solicitud
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+
   // Hooks para obtener datos
   const {
     service,
     isLoading: serviceLoading,
     error: serviceError,
   } = useServiceDetail(serviceId);
-  const { providers, isLoading: providersLoading } = useProviders(serviceId);
   const { reviews, isLoading: reviewsLoading } = useReviews(serviceId);
 
-  // Handlers para acciones (modales se implementarán después)
+  // Handlers para acciones
   const handleStartRequest = () => {
-    console.log("Iniciar request para servicio:", serviceId);
-    alert("Modal de request - Se implementará próximamente");
-    // TODO: Abrir modal de solicitud de servicio
-  };
-
-  const handleContactSpecialist = () => {
-    console.log("Contactar especialista para servicio:", serviceId);
-    alert("Modal de contacto - Se implementará próximamente");
-    // TODO: Abrir modal de contacto
+    setIsRequestModalOpen(true);
   };
 
   // Estado de carga
@@ -112,13 +105,8 @@ export default function ServiceDetailPage() {
         <ServiceDetails service={service} />
       </Section>
 
-      {/* Proveedores disponibles */}
-      <Section size="md" background="secondary">
-        <ProvidersList providers={providers} isLoading={providersLoading} />
-      </Section>
-
       {/* Reseñas y calificaciones */}
-      <Section size="md" background="white">
+      <Section size="md" background="secondary">
         <ReviewsSection
           reviews={reviews}
           averageRating={service.rating}
@@ -131,6 +119,14 @@ export default function ServiceDetailPage() {
       {/* <Section size="md" background="secondary">
         <ServiceCTA onContactClick={handleContactSpecialist} />
       </Section> */}
+
+      {/* Modal de solicitud de servicio */}
+      <ServiceRequestModal
+        open={isRequestModalOpen}
+        onOpenChange={setIsRequestModalOpen}
+        service={service}
+        userId="user_123" // TODO: Obtener del contexto de autenticación
+      />
     </div>
   );
 }

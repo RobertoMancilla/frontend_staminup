@@ -1,4 +1,4 @@
-import { Service, Category, SearchFilters } from '@/types';
+import { Service, Category, SearchFilters, ServiceRequest, ServiceRequestResponse } from '@/types';
 import servicesData from '@/public/data/services.json';
 import categoriesData from '@/public/data/categories.json';
 
@@ -130,6 +130,54 @@ export const apiClient = {
     }
     
     return null;
+  },
+
+  /**
+   * Crea una nueva solicitud de servicio (Service Request / Booking)
+   * @param payload - Datos de la solicitud sin requestId, createdAt, status
+   * @returns Promise con la respuesta del servidor
+   */
+  async postServiceRequest(
+    payload: Omit<ServiceRequest, 'requestId' | 'createdAt' | 'status'>
+  ): Promise<ServiceRequestResponse> {
+    if (USE_MOCK_DATA) {
+      // Simular latencia de red de 400ms
+      await simulateNetworkDelay(400);
+      
+      // Simular posible error (5% de probabilidad para testing)
+      if (Math.random() < 0.05) {
+        throw new Error('Error al procesar la solicitud. Por favor, intenta nuevamente.');
+      }
+      
+      // Generar respuesta mock exitosa
+      const requestId = `req_${Math.random().toString(36).substr(2, 9)}`;
+      const createdAt = new Date().toISOString();
+      
+      const response: ServiceRequestResponse = {
+        requestId,
+        status: 'pending',
+        createdAt,
+        serviceRequest: {
+          ...payload,
+          requestId,
+          status: 'pending',
+          createdAt,
+        },
+      };
+      
+      return response;
+    }
+    
+    // Backend real:
+    // const response = await fetch('/api/service-requests', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(payload),
+    // });
+    // if (!response.ok) throw new Error('Failed to create service request');
+    // return response.json();
+    
+    throw new Error('Backend not implemented');
   },
 };
 

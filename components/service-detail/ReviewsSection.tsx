@@ -32,20 +32,13 @@ export function ReviewsSection({
     );
   }
 
-  // Calcular distribución de estrellas
-  const ratingDistribution = [5, 4, 3, 2, 1].map((rating) => {
-    const count = reviews.filter((r) => r.rating === rating).length;
-    const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
-    return { rating, count, percentage };
-  });
-
   return (
     <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center gap-3">
         <MessageSquare className="w-8 h-8 text-primary" />
         <div>
-          <h2 className="heading-md text-primary">Reseñas y Calificaciones</h2>
+          <h2 className="heading-md text-primary">Reseñas y Calificación</h2>
           <p className="body-base text-secondary">
             Conoce lo que opinan nuestros clientes
           </p>
@@ -53,9 +46,9 @@ export function ReviewsSection({
       </div>
 
       {/* Resumen de calificaciones */}
-      <div className="grid md:grid-cols-3 gap-8 p-8 bg-secondary rounded-2xl shadow-md">
+      <div className="flex justify-center p-8 bg-secondary rounded-2xl shadow-md">
         {/* Promedio general */}
-        <div className="text-center md:border-r border-gray-300 pr-8">
+        <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-6xl font-bold text-primary">
               {averageRating.toFixed(1)}
@@ -77,26 +70,6 @@ export function ReviewsSection({
           <p className="body-base text-secondary">
             Basado en {totalReviews} {totalReviews === 1 ? "reseña" : "reseñas"}
           </p>
-        </div>
-
-        {/* Distribución de estrellas */}
-        <div className="md:col-span-2 space-y-3">
-          {ratingDistribution.map(({ rating, count, percentage }) => (
-            <div key={rating} className="flex items-center gap-3">
-              <span className="body-sm text-secondary font-medium w-12">
-                {rating} ★
-              </span>
-              <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-yellow-400 transition-all duration-500"
-                  style={{ width: `${percentage}%` }}
-                />
-              </div>
-              <span className="body-sm text-muted w-12 text-right font-medium">
-                {count}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
 

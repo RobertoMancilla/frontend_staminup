@@ -20,36 +20,5 @@
     "status": "En curso",
     "price": 1200,
     "reports": []
-  },
-  {
-    "id": "o003",
-    "serviceName": "Reparación de plomería",
-    "providerName": "AquaFix",
-    "date": "2025-07-20",
-    "status": "Completado",
-    "price": 650,
-    "rating": {
-      "value": 4,
-      "createdAt": "2025-07-21T15:45:00Z"
-    },
-    "reports": []
-  },
-  {
-    "id": "o004",
-    "serviceName": "Jardinería y paisajismo",
-    "providerName": "Green Garden",
-    "date": "2025-10-01",
-    "status": "Pendiente",
-    "price": 900,
-    "reports": []
-  },
-  {
-    "id": "o005",
-    "serviceName": "Pintura interior",
-    "providerName": "Color Perfect",
-    "date": "2025-09-05",
-    "status": "Completado",
-    "price": 2500,
-    "reports": []
   }
 ]

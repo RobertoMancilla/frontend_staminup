@@ -61,7 +61,7 @@ export default function ReviewListItem({ review }: ReviewListItemProps) {
               <span className="body-sm">{reviewDate}</span>
             </div>
 
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <Button
                 variant="outline"
                 size="sm"
@@ -90,7 +90,7 @@ export default function ReviewListItem({ review }: ReviewListItemProps) {
                 <Trash2 className="h-4 w-4" />
                 Eliminar
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </CardContent>

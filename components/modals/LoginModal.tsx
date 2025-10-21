@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useAuthMock } from "@/hooks/useAuthMock";
 import { Loader2 } from "lucide-react";
 
 interface LoginModalProps {
@@ -28,7 +27,6 @@ export default function LoginModal({
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { login } = useAuthMock();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +34,7 @@ export default function LoginModal({
     setLoading(true);
 
     try {
-      await login(email, password);
+      // await login(email, password);
       onOpenChange(false);
       setEmail("");
       setPassword("");

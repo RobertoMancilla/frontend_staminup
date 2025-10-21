@@ -68,9 +68,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
               <span
                 className="text-[var(--color-primary-light)]"
                 title="Verificado"
-              >
-                ✓
-              </span>
+              ></span>
             )}
           </div>
 

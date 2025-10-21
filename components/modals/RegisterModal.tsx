@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useAuthMock } from "@/hooks/useAuthMock";
 import { Loader2, User, Briefcase } from "lucide-react";
 
 interface RegisterModalProps {
@@ -30,7 +29,6 @@ export default function RegisterModal({
   const [userType, setUserType] = useState<"client" | "provider">("client");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { register } = useAuthMock();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +36,7 @@ export default function RegisterModal({
     setLoading(true);
 
     try {
-      await register(email, password, name, userType);
+      // await register(email, password, name, userType);
       onOpenChange(false);
       // Reset form
       setName("");

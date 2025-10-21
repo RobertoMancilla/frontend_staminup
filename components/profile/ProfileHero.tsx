@@ -14,6 +14,7 @@ interface ProfileHeroProps {
 
 export default function ProfileHero({ user, onUpdateUser }: ProfileHeroProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const memberSinceDate = new Date(user.memberSince).toLocaleDateString(
     "es-MX",
@@ -41,16 +42,13 @@ export default function ProfileHero({ user, onUpdateUser }: ProfileHeroProps) {
             {/* Avatar */}
             <div className="relative">
               <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-[var(--color-primary)] shadow-md bg-[var(--color-primary)]">
-                {user.profileImage &&
-                user.profileImage !== "/mock-images/mariana.jpg" ? (
+                {user.profileImage && !imageError ? (
                   <Image
                     src={user.profileImage}
                     alt={user.name}
                     fill
                     className="object-cover"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
+                    onError={() => setImageError(true)}
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-white">
