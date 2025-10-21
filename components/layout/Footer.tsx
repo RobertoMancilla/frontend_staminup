@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const footerLinks = {
     company: [
       { label: "Inicio", href: "/" },
       { label: "Servicios", href: "/services" },
-      { label: "Perfil", href: "/profile" },
     ],
     legal: [
       { label: "Términos de uso", href: "/terms" },
@@ -17,7 +16,6 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
     { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
   ];
